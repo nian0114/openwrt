@@ -173,7 +173,6 @@ foreach my $mirror (@ARGV) {
 			push @extra, "$extra[0]/longterm/v$1";
 		}		
 		foreach my $dir (@extra) {
-			push @mirrors, "http://mirrors.ustc.edu.cn/kernel.org/$dir";
 			push @mirrors, "https://kernel.org/pub/$dir";
 			push @mirrors, "ftp://kernel.org/pub/$dir";
 		}

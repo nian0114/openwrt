@@ -39,7 +39,6 @@ endef
 define Package/dnsmasq
 $(call Package/dnsmasq/Default)
   VARIANT:=nodhcpv6
-  DEPENDS:=+kmod-ipt-ipset
 endef
 
 define Package/dnsmasq-dhcpv6
@@ -116,7 +115,7 @@ ifeq ($(BUILD_VARIANT),full)
 		$(if $(CONFIG_PACKAGE_dnsmasq_$(BUILD_VARIANT)_ipset),,-DNO_IPSET)
 	COPTS += $(if $(CONFIG_LIBNETTLE_MINI),-DNO_GMP,)
 else
-	COPTS += -DNO_AUTH
+	COPTS += -DNO_AUTH -DNO_IPSET
 endif
 
 MAKE_FLAGS := \

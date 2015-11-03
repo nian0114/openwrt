@@ -21,7 +21,6 @@
 #include "dev-m25p80.h"
 #include "machtypes.h"
 #include "pci.h"
-#include "tplink-wmac.h"
 
 #define TL_WA901ND_GPIO_LED_QSS		0
 #define TL_WA901ND_GPIO_LED_SYSTEM	1
@@ -95,6 +94,7 @@ static void __init common_setup(void)
 static void __init tl_wa901nd_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
+	u8 *ee  = (u8 *) KSEG1ADDR(0x1fff1000);
 
 	ath79_gpio_function_disable(AR724X_GPIO_FUNC_ETH_SWITCH_LED0_EN |
 				    AR724X_GPIO_FUNC_ETH_SWITCH_LED1_EN |
@@ -111,7 +111,7 @@ static void __init tl_wa901nd_setup(void)
 					ARRAY_SIZE(tl_wa901nd_gpio_keys),
 					tl_wa901nd_gpio_keys);
 
-    tplink_register_ap91_wmac1(0x1000, mac, 0);
+	ap91_pci_init(ee, mac);
 }
 
 MIPS_MACHINE(ATH79_MACH_TL_WA901ND, "TL-WA901ND", "TP-LINK TL-WA901ND",

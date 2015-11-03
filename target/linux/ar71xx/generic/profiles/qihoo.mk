@@ -5,13 +5,12 @@
 # See /LICENSE for more information.
 #
 
-define Profile/QIHOOC301
+define Profile/QIHOO360
 	NAME:=Qihoo 360 C301
-	PACKAGES:=kmod-ath9k kmod-ath10k kmod-usb2
+	PACKAGES:=kmod-usb-core kmod-usb2 kmod-ledtrig-usbdev kmod-ath10k
 endef
 
-define Profile/QIHOOC301/Description
-	Package set optimized for the Qihoo 360 C301.
+define Profile/QIHOO360/Description
+  Package set optimized for the Qihoo 360 C301 device.
 endef
-
-$(eval $(call Profile,QIHOOC301))
+$(eval $(call Profile,QIHOO360))

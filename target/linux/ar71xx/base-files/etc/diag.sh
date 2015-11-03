@@ -163,9 +163,6 @@ get_status_led() {
 	mynet-n750)
 		status_led="wd:blue:power"
 		;;
-	qihoo-c301)
-		status_led="360:green:status"
-		;;
 	mynet-rext)
 		status_led="wd:blue:power"
 		;;
@@ -236,6 +233,9 @@ get_status_led() {
 	oolite)
 		status_led="oolite:red:system"
 		;;
+	qihoo-c301)
+		status_led="qihoo:green:status"
+		;;
 	tew-632brp)
 		status_led="tew-632brp:green:status"
 		;;
@@ -269,7 +269,6 @@ get_status_led() {
 	tl-wa901nd-v3 | \
 	tl-wdr3320-v2 | \
 	tl-wdr3500 | \
-	tl-wdr6300 | \
 	tl-wr1041n-v2 | \
 	tl-wr1043nd | \
 	tl-wr1043nd-v2 | \
@@ -281,7 +280,6 @@ get_status_led() {
 	tl-wa830re-v2 | \
 	tl-wr842n-v2 | \
 	tl-wr941nd | \
-	tl-wr941nd-v7 | \
 	tl-wr941nd-v5)
 		status_led="tp-link:green:system"
 		;;
@@ -291,7 +289,6 @@ get_status_led() {
 	tl-mr10u | \
 	tl-mr12u | \
 	tl-mr13u | \
-    mw4530r | \
 	tl-wdr4300 | \
 	tl-wr703n | \
 	tl-wr710n | \
@@ -299,13 +296,10 @@ get_status_led() {
 		status_led="tp-link:blue:system"
 		;;
 	tl-wr841n-v9)
-		status_led="tp-link:green:wlan"
+		status_led="tp-link:green:qss"
 		;;
 	tl-wr2543n)
 		status_led="tp-link:green:wps"
-		;;
-	tl-wr882n-v1)
-		status_led="tp-link:white:status"
 		;;
 	tl-wdr6500-v2)
 		status_led="tp-link:white:system"
@@ -394,10 +388,8 @@ set_state() {
 		status_led_on
 		case $(ar71xx_board_name) in
 		qihoo-c301)
-			if cat /proc/mtd | grep action_image_config; then
-				local n=$(fw_printenv activeregion | cut -d = -f 2)
-				fw_setenv "image${n}trynum" 0
-			fi
+			local n=$(fw_printenv activeregion | cut -d = -f 2)
+			fw_setenv "image${n}trynum" 0
 			;;
 		esac
 		;;

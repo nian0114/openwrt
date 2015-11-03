@@ -420,9 +420,7 @@ define KernelPackage/fs-vfat
   TITLE:=VFAT filesystem support
   KCONFIG:= \
 	CONFIG_FAT_FS \
-	CONFIG_VFAT_FS \
-	CONFIG_FAT_DEFAULT_IOCHARSET="utf8" \
-	CONFIG_FAT_DEFAULT_CODEPAGE=936
+	CONFIG_VFAT_FS
   FILES:= \
 	$(LINUX_DIR)/fs/fat/fat.ko \
 	$(LINUX_DIR)/fs/fat/vfat.ko
